@@ -3,14 +3,18 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 const url = '/api';
 
-interface Advertiser {
-  id: number;
-  name: string;
-}
-export interface AdvertisersCampaigns {
+export interface AdvertisersCampaign {
   name: string;
   cost: number;
+  advertiser_id: number;
   number_of_campaigns: number;
+}
+export interface AdvertisersCampaignsReport {
+  advertiser_id: number;
+  campaign_id: number;
+  advertiser_name: string;
+  campaign_name: string;
+  cost: number;
 }
 
 @Injectable({
@@ -20,11 +24,11 @@ export class ReportsService {
 
   constructor(private http: HttpClient) { }
 
-  public advertisers() {
-    return this.http.get(url + '/advertisers') as Observable<Advertiser[]>;
+  public advertisersCampaigns() {
+    return this.http.get(url + '/advertisers_campaigns') as Observable<AdvertisersCampaign[]>;
   }
 
-  public advertisersCampaigns() {
-    return this.http.get(url + '/advertisers_campaigns') as Observable<AdvertisersCampaigns[]>;
+  public advertisersCampaignsReport() {
+    return this.http.get(url + '/advertisers_campaigns_reports') as Observable<AdvertisersCampaignsReport[]>;
   }
 }
