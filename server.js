@@ -1,26 +1,16 @@
-// Get dependencies
+//Install express server
 const express = require('express');
 const path = require('path');
-const http = require('http');
 
 const app = express();
 
-// Point static path to dist
-app.use(express.static(path.join(__dirname, 'dist/advertisement-report')));
+// Serve only the static files form the dist directory
+app.use(express.static('./dist/advertisement-report'));
 
+app.get('/*', function(req,res) {
+    
+res.sendFile(path.join(__dirname,'/dist/advertisement-report/index.html'));
+});
 
-
-
-
-const port = process.env.PORT || '3000';
-app.set('port', port);
-
-/**
- * Create HTTP server.
- */
-const server = http.createServer(app);
-
-/**
- * Listen on provided port, on all network interfaces.
- */
-server.listen(port, () => console.log(`API running on localhost:${port}`));
+// Start the app by listening on the default Heroku port
+app.listen(process.env.PORT || 8080);
