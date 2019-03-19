@@ -28,7 +28,8 @@
     "highcharts-angular": "^2.4.0",
     "rxjs": "6.0.0",
     "zone.js": "~0.8.26",
-    "express": "4.16.4"
+    "express": "4.16.4",
+    "http-proxy-middleware": "0.19.1"
   },
   "devDependencies": {
     "@angular-devkit/build-angular": "~0.7.0",
